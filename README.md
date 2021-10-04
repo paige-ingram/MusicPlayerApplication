@@ -1,11 +1,24 @@
 # My Personal Project
 
-## A subtitle
+## Paige's Playlist
 
-A *bulleted* list:
-- item 1
-- item 2
-- item 3
+An example playlist:
 
-An example of text with **bold** and *italic* fonts.  Note that the IntelliJ markdown previewer doesn't seem to render 
-the bold and italic fonts correctly but they will appear correctly on GitHub.
+###*Dance Yourself Clean from COVID-19*
+- "Motley Crew" by Post Malone
+- "Low" by Flo Rida
+- "Ransom" by Lil Tecca
+
+###What will the application do?
+This application will store songs in named playlists. Users can add or remove songs to a 
+specified playlist. Users can retrieve and view all songs located in a playlist. Users can 
+play a playlist until there are no more songs remaining.
+
+###Who will use it?
+This application will be used by music listeners who want to create and play their playlists.
+
+###Why is this project of interest to you?
+As an avid music listener, this project is of great interest to me, so I can create, manage, 
+and play music depending on the type of mood I am in. I can keep track of all my favourite 
+songs so when I am on aux at a party it will be easy to keep the crowd entertained without
+constantly thinking about what to play next.
