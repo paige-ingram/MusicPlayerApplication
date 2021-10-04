@@ -33,6 +33,7 @@ constantly thinking about what to play next.
 - As a user, I want to be able to remove a song from my specified playlist.
 - As a user, I want to be able to play a playlist.
 - As a user, I want to be able to pause a playlist.
+- As a user, I want to be able to skip a song in a playlist.
 - As a user, I want to be able to view a playlist.
 
 
