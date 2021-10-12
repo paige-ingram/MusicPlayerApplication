@@ -5,12 +5,10 @@
 An example playlist:
 
 ###*Dance Yourself Clean from COVID-19*
-Playing: "Like a G6" by Far East Movement
-
-Up Next:
-- "Motley Crew" by Post Malone
-- "Low" by Flo Rida
-- "Ransom" by Lil Tecca
+"Like a G6" by Far East Movement
+"Motley Crew" by Post Malone
+"Low" by Flo Rida
+"Ransom" by Lil Tecca
 
 ###What will the application do?
 This application will store songs in named playlists. Users can add or remove songs to a 
@@ -31,9 +29,6 @@ constantly thinking about what to play next.
 - As a user, I want to be able to create a new playlist.
 - As a user, I want to be able to add a song to my specified playlist.
 - As a user, I want to be able to remove a song from my specified playlist.
-- As a user, I want to be able to play a playlist.
-- As a user, I want to be able to pause a playlist.
-- As a user, I want to be able to skip a song in a playlist.
 - As a user, I want to be able to view a playlist.
 
 
