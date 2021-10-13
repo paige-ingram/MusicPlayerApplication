@@ -16,6 +16,8 @@ public class MusicPlayer {
 
     // EFFECTS: runs the music player
     public MusicPlayer() {
+        myPlaylist = new ArrayList<Song>();
+        myMusicPlayer = new ArrayList<Playlist>();
         runMusicPlayer();
     }
 
@@ -29,7 +31,7 @@ public class MusicPlayer {
 
         while (keepGoing) {
             displayMenu();
-            command = input.next();
+            command = input.nextLine();
             command = command.toLowerCase();
 
             if (command.equals("q")) {
@@ -102,10 +104,11 @@ public class MusicPlayer {
     }
 
     private void userViewPlaylist() {
-        System.out.print("What playlist would you like to view?");
+        System.out.print("What playlist would you like to view?\n");
         String viewPlaylistName = input.nextLine();
         selectPlaylist().viewPlaylist();
     }
+    // viewPlaylist(viewPlaylistName);
 
     // REQUIRES: user inputs an integer < # items in myMusicPlayer
     // EFFECTS: prompts user to select a playlist and returns it
@@ -137,7 +140,8 @@ public class MusicPlayer {
             if (s.getName().equals(songName)) {
                 return s;
             }
-        } return null;
+        }
+        return null;
     }
 }
 

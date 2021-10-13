@@ -18,7 +18,9 @@ public class Song {
         return name;
     }
 
-    public String getArtist() { return artist; }
+    public String getArtist() {
+        return artist;
+    }
 
     public String toString() {
         return name;
