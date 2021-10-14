@@ -51,8 +51,8 @@ public class PlaylistTest {
     @Test
     void testAddTwoSongsNotThere() {
         playlist.addSong(testsong);
-        Song newsong = new Song("New song")
-        playlist.addSong(new Song(newsong);
+        Song newsong = new Song("New song", "New artist");
+        playlist.addSong(newsong);
         assertEquals(2, playlist.getListOfSongs().size());
         assertEquals(newsong, playlist.getListOfSongs().get(1));
     }
