@@ -34,8 +34,18 @@ public class PlaylistTest {
     }
 
     @Test
-    void testAddSong() {
+    void testAddSongNotThere() {
         playlist.addSong(testsong);
         assertEquals(testsong, playlist.getListOfSongs());
+        assertEquals(1, playlist.getListOfSongs().size());
+    }
+
+    @Test
+    void testAddSongThere() {
+        playlist.addSong(testsong);
+        assertEquals(testsong, playlist.getListOfSongs());
+        playlist.addSong(testsong);
+        assertEquals(testsong, playlist.getListOfSongs());
+        assertEquals(1, playlist.getListOfSongs().size());
     }
 }
