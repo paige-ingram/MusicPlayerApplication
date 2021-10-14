@@ -1,4 +1,4 @@
-package test;
+package model;
 
 import model.Song;
 import org.junit.jupiter.api.BeforeEach;
