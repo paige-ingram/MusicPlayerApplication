@@ -9,12 +9,16 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PlaylistTest {
     private Playlist playlist;
+    private Playlist playlistwithsong;
     private Song testsong;
+
 
     @BeforeEach
     void setup() {
         playlist = new Playlist("Test playlist");
         testsong = new Song("Test song", "Test artist");
+        playlistwithsong = new Playlist("Playlist with Song");
+        playlistwithsong.addSong(testsong);
     }
 
     @Test
@@ -55,5 +59,13 @@ public class PlaylistTest {
         playlist.addSong(newsong);
         assertEquals(2, playlist.getListOfSongs().size());
         assertEquals(newsong, playlist.getListOfSongs().get(1));
+    }
+
+    @Test
+    void testSongAlreadyThere() {
+        playlistwithsong.addSong(testsong);
+        assertEquals(1, playlistwithsong.getListOfSongs().size());
+        assertEquals(testsong, playlistwithsong.getListOfSongs());
+        assertEquals(testsong, playlistwithsong.getListOfSongs().get(0));
     }
 }
