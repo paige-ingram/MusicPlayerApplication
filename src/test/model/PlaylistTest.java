@@ -48,4 +48,12 @@ public class PlaylistTest {
         assertEquals(testsong, playlist.getListOfSongs());
         assertEquals(1, playlist.getListOfSongs().size());
     }
+    @Test
+    void testAddTwoSongsNotThere() {
+        playlist.addSong(testsong);
+        Song newsong = new Song("New song")
+        playlist.addSong(new Song(newsong);
+        assertEquals(2, playlist.getListOfSongs().size());
+        assertEquals(newsong, playlist.getListOfSongs().get(1));
+    }
 }
