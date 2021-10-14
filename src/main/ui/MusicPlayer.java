@@ -7,12 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import static java.lang.Character.getName;
-
 // a Music Player application with a collection of user-generated playlists
 public class MusicPlayer {
     private Scanner input;
-    private ArrayList<Song> myPlaylist;
     private ArrayList<Playlist> myMusicPlayer;
 
     // EFFECTS: runs the music player
@@ -22,7 +19,7 @@ public class MusicPlayer {
     }
 
     // MODIFIES: this
-    // EFFECTS: allows user to edit and view their playlists
+    // EFFECTS: allows user to edit and view their playlists, and create new playlists
     private void runMusicPlayer() {
         boolean keepGoing = true;
         String command = null;
@@ -70,15 +67,19 @@ public class MusicPlayer {
             Playlist selectedPlaylist = userSelectPlaylist();
             userAddSong(selectedPlaylist);
         } else if (command.equals("remove")) {
-            userRemoveSong();
+            System.out.println("What playlist would you like to remove a song from?");
+            Playlist selectedPlaylist = userSelectPlaylist();
+            userRemoveSong(selectedPlaylist);
         } else if (command.equals("view")) {
-            userViewPlaylist();
+            System.out.println("What playlist would you like to view?");
+            Playlist selectedPlaylist = userSelectPlaylist();
+            userViewPlaylist(selectedPlaylist);
         } else {
             System.out.println("Sorry! We can't understand what you are trying to do!");
         }
     }
 
-    // EFFECTS: displays menu of user-created playlists to user
+    // EFFECTS: displays menu of user-created playlists to user and returns user selected playlist
     private Playlist userSelectPlaylist() {
         String selection = "";  // force entry into loop
         for (int i = 0; i < myMusicPlayer.size(); i++) {
@@ -90,7 +91,7 @@ public class MusicPlayer {
     }
 
 
-    // REQUIRES: no playlist already exists with given name
+    // REQUIRES: no playlist already exists with given name, playlist name is not null
     // MODIFIES: this
     // EFFECTS: creates a new playlist with given name
     public void userNewPlaylist() {
@@ -101,6 +102,9 @@ public class MusicPlayer {
         System.out.println("Your playlist, " + createPlaylistName + ", was added to your Music Player!");
     }
 
+    // REQUIRES: song name and artist name are not null
+    // MODIFIES: this
+    // EFFECTS: adds new song with song name and artist to end of given playlist
     public void userAddSong(Playlist selectedPlaylist) {
         System.out.print("Enter song name: \n");
         String addSongName = input.nextLine();
@@ -113,81 +117,56 @@ public class MusicPlayer {
     }
 
     // REQUIRES: song is currently in playlist
-    public Playlist userRemoveSong() {
-        System.out.print("Enter song name: ");
-        String removeSongName = input.nextLine();
-        String pname = input.nextLine();
-        Playlist userPlaylist = new Playlist(pname);
-        Song song = userPlaylist.getSong(removeSongName);
-        userPlaylist.removeSong(song);
-        return userPlaylist;
+    // MODIFIES: this
+    // EFFECTS: removes identified song from current playlist
+    public void userRemoveSong(Playlist playlist) {
+        System.out.println("Which song would you like to remove? \n");
+        viewRemoveSongFromPlaylist(playlist);
+        int songRemoveChoice = Integer.parseInt(input.nextLine());
+        List<Song> listofsongs = playlist.getListOfSongs();
+        listofsongs.remove(songRemoveChoice);
+        System.out.println("Your song has been removed from your playlist " + playlist.getPlaylistName() + "!");
     }
 
-    public void userViewPlaylist() {
-        System.out.print("What playlist would you like to view?\n");
-        Playlist selectedPlaylist = userSelectPlaylist();
-        String viewPlaylistName = input.nextLine();
-        selectedPlaylist = getPlaylist(viewPlaylistName);
-        if (selectedPlaylist.getListOfSongs().size() == 0) {
+    // EFFECTS: displays indexed list of songs
+    private void viewRemoveSongFromPlaylist(Playlist p) {
+        String selection = "";  // force entry into loop
+        int numsongs = p.getListOfSongs().size();
+        System.out.println("Playlist: " + p.getPlaylistName());
+        List<Song> listOfSongs = p.getListOfSongs();
+        for (int s = 0; s < numsongs; s++) {
+            Song song = listOfSongs.get(s);
+            String sname = song.getName();
+            String aname = song.getArtist();
+            System.out.println(s + "'" + sname + "' by " + aname);
+        }
+    }
+
+    // EFFECTS: warns if playlist is empty, otherwise display playlist
+    public void userViewPlaylist(Playlist playlist) {
+        if (playlist.getListOfSongs().size() == 0) {
             System.out.println("This playlist is empty!");
         } else {
-            viewPlaylist(selectedPlaylist);
+            viewPlaylist(playlist);
         }
     }
 
+    // EFFECTS: displays playlist to user including playlist name and each song currently in the
+    // playlist and its artist, in order which songs were added
     private void viewPlaylist(Playlist p) {
-        System.out.println(p.getListOfSongs());
-        System.out.println(p.getListOfSongs().size());
-        int numsongs = p.getListOfSongs().size();
         String selection = "";  // force entry into loop
-        System.out.println(p.getPlaylistName());
+        int numsongs = p.getListOfSongs().size();
+        System.out.println("Playlist: " + p.getPlaylistName());
+        List<Song> listOfSongs = p.getListOfSongs();
         for (int s = 0; s < numsongs; s++) {
-            Song song = myPlaylist.get(s);
+            Song song = listOfSongs.get(s);
             String sname = song.getName();
-            System.out.println(s + " " + sname);
+            String aname = song.getArtist();
+            System.out.println("'" + sname + "' by " + aname);
         }
     }
 
-
-//    // REQUIRES: user inputs an integer < # items in myMusicPlayer
-//    // EFFECTS: prompts user to select a playlist and returns it
-//    private Playlist selectPlaylist() {
-//        String selection = "";  // force entry into loop
-//
-//        for (int i = 0; i < myMusicPlayer.size(); i++) {
-//            System.out.println(i + " " + myMusicPlayer.get(i));
-//        }
-//
-//        int playlistChoice = Integer.parseInt(input.nextLine());
-//
-//        return myMusicPlayer.get(playlistChoice);
-//
-//    }
-
-    // EFFECTS: returns playlist with given name
-    public Playlist getPlaylist(String playlistName) {
-        for (Playlist p : myMusicPlayer) {
-            if (p.getPlaylistName().equals(playlistName)) {
-                return p;
-            } else {
-                return new Playlist("Empty Playlist");
-            }
-
-        }
-        return null;
-    }
-
-    // REQUIRES: Song must be in playlist
-    // EFFECTS: returns song with given name
-    public Song getSong(String songName) {
-        for (Song s : myPlaylist) {
-            if (s.getName().equals(songName)) {
-                return s;
-            }
-        }
-        return null;
-    }
-
+    // EFFECTS: returns name of given song
     public String getName(Song s) {
         return s.getName();
     }
