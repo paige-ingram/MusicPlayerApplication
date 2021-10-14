@@ -27,7 +27,7 @@ constantly thinking about what to play next.
 ##User Stories
 
 - As a user, I want to be able to create a new playlist.
-- As a user, I want to be able to add a song to my specified playlist.
+- As a user, I want to be able to add a song with a specified name, artist, and length to my specified playlist.
 - As a user, I want to be able to remove a song from my specified playlist.
 - As a user, I want to be able to view a playlist.
 
