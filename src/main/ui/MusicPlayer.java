@@ -19,6 +19,14 @@ public class MusicPlayer {
     }
 
     // MODIFIES: this
+    // EFFECTS: initializes playlists
+    private void init() {
+        input = new Scanner(System.in);
+        input.useDelimiter("\n");
+    }
+
+
+    // MODIFIES: this
     // EFFECTS: allows user to edit and view their playlists, and create new playlists
     private void runMusicPlayer() {
         boolean keepGoing = true;
@@ -39,14 +47,6 @@ public class MusicPlayer {
         System.out.println("\nThanks for jamming with us!");
     }
 
-
-
-    // MODIFIES: this
-    // EFFECTS: initializes playlists
-    private void init() {
-        input = new Scanner(System.in);
-        input.useDelimiter("\n");
-    }
 
     // EFFECTS: displays menu of options to user
     private void displayStartMenu() {
@@ -98,7 +98,8 @@ public class MusicPlayer {
         System.out.print("Enter playlist name: ");
         String createPlaylistName = input.nextLine();
         Playlist playlist = new Playlist(createPlaylistName);
-        myMusicPlayer.add(playlist);
+        myMusicPlayer.add(playlist); // change this to .addPlaylist
+//        myMusicPlayer.add(playlist);
         System.out.println("Your playlist, " + createPlaylistName + ", was added to your Music Player!");
     }
 
@@ -124,7 +125,7 @@ public class MusicPlayer {
         viewRemoveSongFromPlaylist(playlist);
         int songRemoveChoice = Integer.parseInt(input.nextLine());
         List<Song> listofsongs = playlist.getListOfSongs();
-        listofsongs.remove(songRemoveChoice);
+        listofsongs.remove(songRemoveChoice); // change this to .removeSong
         System.out.println("Your song has been removed from your playlist " + playlist.getPlaylistName() + "!");
     }
 
@@ -170,6 +171,7 @@ public class MusicPlayer {
     public String getName(Song s) {
         return s.getName();
     }
+
 }
 
 

@@ -8,6 +8,7 @@ public class Playlist {
 
     private String pname;
     private ArrayList<Song> listOfSongs;
+    private ArrayList<Playlist> myMusicPlayer;
 
     // REQUIRES: pname has non-zero length
     // MODIFIES: this
@@ -37,6 +38,18 @@ public class Playlist {
             return listOfSongs;
         }
     }
+
+//    public List<Song> removeSong(Playlist playlist) {
+//        listofsongs.remove(songRemoveChoice);
+//        return listofsongs;
+//    }
+
+//    public List<Playlist> addPlaylist(Playlist playlist) {
+//        myMusicPlayer.add(playlist);
+//        return myMusicPlayer;
+//    }
+
+
 }
 
 
