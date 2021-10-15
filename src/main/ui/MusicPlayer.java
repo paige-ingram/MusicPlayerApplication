@@ -10,11 +10,11 @@ import java.util.Scanner;
 // a Music Player application with a collection of user-generated playlists
 public class MusicPlayer {
     private Scanner input;
-    private ArrayList<Playlist> myMusicPlayer;
+    private final ArrayList<Playlist> myMusicPlayer;
 
     // EFFECTS: runs the music player
     public MusicPlayer() {
-        myMusicPlayer = new ArrayList<Playlist>();
+        myMusicPlayer = new ArrayList<>();
         runMusicPlayer();
     }
 
@@ -81,7 +81,6 @@ public class MusicPlayer {
 
     // EFFECTS: displays menu of user-created playlists to user and returns user selected playlist
     private Playlist userSelectPlaylist() {
-        String selection = "";  // force entry into loop
         for (int i = 0; i < myMusicPlayer.size(); i++) {
             String pname = myMusicPlayer.get(i).getPlaylistName();
             System.out.println(i + " " + pname);
@@ -131,7 +130,6 @@ public class MusicPlayer {
 
     // EFFECTS: displays indexed list of songs
     private void viewRemoveSongFromPlaylist(Playlist p) {
-        String selection = "";  // force entry into loop
         int numsongs = p.getListOfSongs().size();
         System.out.println("Playlist: " + p.getPlaylistName());
         List<Song> listOfSongs = p.getListOfSongs();
