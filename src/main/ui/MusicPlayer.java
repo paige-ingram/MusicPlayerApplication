@@ -43,7 +43,6 @@ public class MusicPlayer {
                 processCommand(command);
             }
         }
-
         System.out.println("\nThanks for jamming with us!");
     }
 
@@ -55,6 +54,7 @@ public class MusicPlayer {
         System.out.println("\tadd -> Add Song");
         System.out.println("\tremove -> Remove Song");
         System.out.println("\tview -> View Playlist");
+        System.out.println("\tbye -> End MusicPlayer");
     }
 
     // MODIFIES: this
@@ -98,7 +98,6 @@ public class MusicPlayer {
         String createPlaylistName = input.nextLine();
         Playlist playlist = new Playlist(createPlaylistName);
         myMusicPlayer.add(playlist); // change this to .addPlaylist
-//        myMusicPlayer.add(playlist);
         System.out.println("Your playlist, " + createPlaylistName + ", was added to your Music Player!");
     }
 
@@ -123,17 +122,17 @@ public class MusicPlayer {
         System.out.println("Which song would you like to remove? \n");
         viewRemoveSongFromPlaylist(playlist);
         int songRemoveChoice = Integer.parseInt(input.nextLine());
-        List<Song> listofsongs = playlist.getListOfSongs();
-        listofsongs.remove(songRemoveChoice); // change this to .removeSong
+        List<Song> listOfSongs = playlist.getListOfSongs();
+        playlist.removeSong(listOfSongs.get(songRemoveChoice));
         System.out.println("Your song has been removed from your playlist " + playlist.getPlaylistName() + "!");
     }
 
     // EFFECTS: displays indexed list of songs
     private void viewRemoveSongFromPlaylist(Playlist p) {
-        int numsongs = p.getListOfSongs().size();
+        int numSongs = p.getListOfSongs().size();
         System.out.println("Playlist: " + p.getPlaylistName());
         List<Song> listOfSongs = p.getListOfSongs();
-        for (int s = 0; s < numsongs; s++) {
+        for (int s = 0; s < numSongs; s++) {
             Song song = listOfSongs.get(s);
             String sname = song.getName();
             String aname = song.getArtist();
@@ -154,14 +153,14 @@ public class MusicPlayer {
     // playlist and its artist, in order which songs were added
     private void viewPlaylist(Playlist p) {
         String selection = "";  // force entry into loop
-        int numsongs = p.getListOfSongs().size();
+        int numSongs = p.getListOfSongs().size();
         System.out.println("Playlist: " + p.getPlaylistName());
         List<Song> listOfSongs = p.getListOfSongs();
-        for (int s = 0; s < numsongs; s++) {
+        for (int s = 0; s < numSongs; s++) {
             Song song = listOfSongs.get(s);
-            String sname = song.getName();
-            String aname = song.getArtist();
-            System.out.println("'" + sname + "' by " + aname);
+            String songName = song.getName();
+            String artistName = song.getArtist();
+            System.out.println("'" + songName + "' by " + artistName);
         }
     }
 
@@ -171,6 +170,7 @@ public class MusicPlayer {
     }
 
 }
+
 
 
 

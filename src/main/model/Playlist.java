@@ -6,14 +6,14 @@ import java.util.List;
 // Represents a playlist with pname and a list of songs in order which they are added to playlist
 public class Playlist {
 
-    private String pname;
+    private String playlistName;
     private ArrayList<Song> listOfSongs;
 
     // REQUIRES: pname has non-zero length
     // MODIFIES: this
     // EFFECTS: constructs an empty playlist with name pname
     public Playlist(String pname) {
-        this.pname = pname;
+        this.playlistName = pname;
         listOfSongs = new ArrayList<Song>();
     }
 
@@ -24,7 +24,7 @@ public class Playlist {
 
     // EFFECTS: returns name of playlist
     public String getPlaylistName() {
-        return pname;
+        return playlistName;
     }
 
     // MODIFIES: this
@@ -38,18 +38,16 @@ public class Playlist {
         }
     }
 
-//    public List<Song> removeSong(Song mySong) {
-//        listOfSongs.remove(mySong);
-//        return listOfSongs;
-//    }
-
-
-//    public List<Playlist> addPlaylist(Playlist playlist) {
-//        myMusicPlayer.add(playlist);
-//        return myMusicPlayer;
-//    }
-
-
+    // MODIFIES: this
+    // EFFECTS: if song is present, removes given song from list of songs in playlist, else do nothing
+    public List<Song> removeSong(Song mySong) {
+        if (!listOfSongs.contains(mySong)) {
+            return listOfSongs;
+        } else {
+            listOfSongs.remove(mySong);
+            return listOfSongs;
+        }
+    }
 }
 
 
