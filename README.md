@@ -42,6 +42,8 @@ it will be easy to keep the crowd entertained without constantly thinking about 
 - As a user, I want to be able to add a song with a specified name and artist to my specified playlist.
 - As a user, I want to be able to remove a song from my specified playlist.
 - As a user, I want to be able to view all my playlists and view all my songs in a given playlist.
+- As a user, I want to be able to save my playlists to a file.
+- As a user, I want to be able to be able to load my playlists from a file. 
 
 
 
