@@ -38,18 +38,16 @@ public class Playlist {
         }
     }
 
-//    public List<Song> removeSong(Song mySong) {
-//        listOfSongs.remove(mySong);
-//        return listOfSongs;
-//    }
-
-
-//    public List<Playlist> addPlaylist(Playlist playlist) {
-//        myMusicPlayer.add(playlist);
-//        return myMusicPlayer;
-//    }
-
-
+    // MODIFIES: this
+    // EFFECTS: if song is present, removes given song from list of songs in playlist, else do nothing
+    public List<Song> removeSong(Song mySong) {
+        if (!listOfSongs.contains(mySong)) {
+            return listOfSongs;
+        } else {
+            listOfSongs.remove(mySong);
+            return listOfSongs;
+        }
+    }
 }
 
 
