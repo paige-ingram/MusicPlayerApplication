@@ -1,6 +1,7 @@
 package model;
 
-import com.sun.tools.javac.util.List;
+import model.Playlist;
+import model.Song;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -8,27 +9,27 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PlaylistTest {
     private Playlist playlist;
-    private Playlist playlistWithSong;
-    private Song testSong;
+    private Playlist playlistwithsong;
+    private Song testsong;
 
 
     @BeforeEach
     void setup() {
         playlist = new Playlist("Test playlist");
-        testSong = new Song("Test song", "Test artist");
-        playlistWithSong = new Playlist("Playlist with Song");
-        playlistWithSong.addSong(testSong);
+        testsong = new Song("Test song", "Test artist");
+        playlistwithsong = new Playlist("Playlist with Song");
+        playlistwithsong.addSong(testsong);
     }
 
     @Test
     void testGetListOfSongsEmpty() {
-        assertEquals(0, playlist.getListOfSongs().size());
+        assertEquals(null, playlist.getListOfSongs());
     }
 
     @Test
     void testGetListOfSongs() {
-        playlist.addSong(testSong);
-        assertEquals(List.of(testSong), playlist.getListOfSongs());
+        playlist.addSong(testsong);
+        assertEquals(testsong, playlist.getListOfSongs());
     }
 
     @Test
@@ -37,66 +38,34 @@ public class PlaylistTest {
     }
 
     @Test
-    void testRemoveSongNotThere() {
-        playlist.removeSong(testSong);
-        assertEquals(0, playlist.getListOfSongs().size());
-    }
-
-    @Test
-    void testRemoveSongThere() {
-        playlist.addSong(testSong);
-        assertEquals(testSong, playlist.getListOfSongs().get(0));
-        playlist.removeSong(testSong);
-        assertEquals(0, playlist.getListOfSongs().size());
-    }
-    @Test
-    void testAddAndRemoveTwoSongs() {
-        playlist.addSong(testSong);
-        Song newSong = new Song("New song", "New artist");
-        playlist.addSong(newSong);
-        assertEquals(2, playlist.getListOfSongs().size());
-        assertEquals(newSong, playlist.getListOfSongs().get(1));
-        playlist.removeSong(testSong);
-        assertEquals(List.of(newSong), playlist.getListOfSongs());
-        assertEquals(1, playlist.getListOfSongs().size());
-        playlist.removeSong(newSong);
-        assertEquals(0, playlist.getListOfSongs().size());
-    }
-
-    @Test
     void testAddSongNotThere() {
-        playlist.addSong(testSong);
-        assertEquals(List.of(testSong), playlist.getListOfSongs());
+        playlist.addSong(testsong);
+        assertEquals(testsong, playlist.getListOfSongs());
         assertEquals(1, playlist.getListOfSongs().size());
     }
 
     @Test
     void testAddSongThere() {
-        playlist.addSong(testSong);
-        assertEquals(List.of(testSong), playlist.getListOfSongs());
-        playlist.addSong(testSong);
-        assertEquals(List.of(testSong), playlist.getListOfSongs());
+        playlist.addSong(testsong);
+        assertEquals(testsong, playlist.getListOfSongs());
+        playlist.addSong(testsong);
+        assertEquals(testsong, playlist.getListOfSongs());
         assertEquals(1, playlist.getListOfSongs().size());
     }
     @Test
     void testAddTwoSongsNotThere() {
-        playlist.addSong(testSong);
-        Song newSong = new Song("New song", "New artist");
-        playlist.addSong(newSong);
+        playlist.addSong(testsong);
+        Song newsong = new Song("New song", "New artist");
+        playlist.addSong(newsong);
         assertEquals(2, playlist.getListOfSongs().size());
-        assertEquals(newSong, playlist.getListOfSongs().get(1));
+        assertEquals(newsong, playlist.getListOfSongs().get(1));
     }
 
     @Test
     void testSongAlreadyThere() {
-        playlistWithSong.addSong(testSong);
-        assertEquals(1, playlistWithSong.getListOfSongs().size());
-        assertEquals(List.of(testSong), playlistWithSong.getListOfSongs());
-        assertEquals(testSong, playlistWithSong.getListOfSongs().get(0));
-    }
-
-    @Test
-    void testPlaylistConstructor() {
-        assertEquals(0, playlist.getListOfSongs().size());
+        playlistwithsong.addSong(testsong);
+        assertEquals(1, playlistwithsong.getListOfSongs().size());
+        assertEquals(testsong, playlistwithsong.getListOfSongs());
+        assertEquals(testsong, playlistwithsong.getListOfSongs().get(0));
     }
 }
