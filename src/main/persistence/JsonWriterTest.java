@@ -33,15 +33,15 @@ class JsonWriterTest extends JsonTest {
         try {
             MusicPlayer musicPlayer = new MusicPlayer();
 //            Playlist playlist = new Playlist("Dance Yourself Clean from COVID-19");
-            JsonWriter writer = new JsonWriter("./data/testWriterEmptyPlaylist.json");
+            JsonWriter writer = new JsonWriter("./data/testWriterEmptyMusicPlayer.json");
             writer.open();
             writer.write(musicPlayer); // should this write a music player?
             writer.close();
 
-            JsonReader reader = new JsonReader("./data/testWriterEmptyPlaylist.json");
+            JsonReader reader = new JsonReader("./data/testWriterEmptyMusicPlayer.json");
             musicPlayer = reader.read();
-            assertEquals("Dance Yourself Clean from COVID-19", playlist.getPlaylistName());
-            assertEquals(0, musicPlayer.getListOfSongs().size());
+            assertEquals("My music player", musicPlayer.getMpName());
+            assertEquals(0, musicPlayer.getListOfPlaylists().size());
         } catch (IOException e) {
             fail("Exception should not have been thrown");
         }
@@ -54,7 +54,7 @@ class JsonWriterTest extends JsonTest {
             Playlist playlist = new Playlist("Dance Yourself Clean from COVID-19");
             playlist.addSong(new Song("Like a G6", "Far East Movement"));
             playlist.addSong(new Song("Motley Crew", "Post Malone"));
-            JsonWriter writer = new JsonWriter("./data/testWriterRegularPlaylist.json");
+            JsonWriter writer = new JsonWriter("./data/testWriterRegularMusicPlayer.json");
             writer.open();
             writer.write(musicPlayer);
             writer.close();

@@ -30,15 +30,16 @@ public class MusicPlayer implements Writable {
         return mpName;
     }
 
-//    // MODIFIES: this
-//    // EFFECTS: adds given song to end of list of songs in playlist, if song not already in that playlist
-//    public ArrayList<Playlist> addPlaylist(Playlist myPlaylist) {
-////        if (listOfSongs.contains(mySong)) {
-////            return listOfSongs;
-////        } else {
-////            listOfSongs.add(mySong);
-//            return listOfPlaylists.add(myPlaylist);
-//        }
+    // MODIFIES: this
+    // EFFECTS: adds given song to end of list of songs in playlist, if song not already in that playlist
+    public ArrayList<Playlist> addPlaylist(Playlist myPlaylist) {
+//        if (listOfSongs.contains(mySong)) {
+//            return listOfSongs;
+//        } else {
+//            listOfSongs.add(mySong);
+            listOfPlaylists.add(myPlaylist);
+            return listOfPlaylists;
+        }
 
 
     @Override
@@ -58,4 +59,5 @@ public class MusicPlayer implements Writable {
         }
         return jsonArray;
     }
+
 }
