@@ -1,5 +1,6 @@
 package ui;
 
+import model.MusicPlayer;
 import model.Playlist;
 import model.Song;
 import persistence.JsonReader;
@@ -12,25 +13,28 @@ import java.util.List;
 import java.util.Scanner;
 
 // a Music Player application with a collection of user-generated playlists
-public class MusicPlayer {
+public class MusicPlayerApp {
     private static final String JSON_STORE = "./data/playlist.json";
     private Scanner input;
-    private final ArrayList<Playlist> myMusicPlayer;
-    private Playlist playlist;
+    private final ArrayList<Playlist> listOfPlaylists;
+//    private Playlist playlist;
+    private MusicPlayer musicPlayer;
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
 
+
     // EFFECTS: runs the music player
-    public MusicPlayer() {
-        myMusicPlayer = new ArrayList<>();
-        playlist = new Playlist("Paige's Playlist");
+    public MusicPlayerApp() throws FileNotFoundException {
+        listOfPlaylists = new ArrayList<Playlist>();
+//        playlist = new Playlist("Dance Yourself Clean from COVID-19");
+        musicPlayer = new MusicPlayer();
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
         runMusicPlayer();
     }
 
     // MODIFIES: this
-    // EFFECTS: initializes playlists
+    // EFFECTS: initializes scanner
     private void init() {
         input = new Scanner(System.in);
         input.useDelimiter("\n");
@@ -88,9 +92,9 @@ public class MusicPlayer {
             Playlist selectedPlaylist = userSelectPlaylist();
             userViewPlaylist(selectedPlaylist);
         } else if (command.equals("save")) {
-            savePlaylists();
+            saveMusicPlayer();
         } else if (command.equals("load")) {
-            loadPlaylists();
+            loadMusicPlayer();
         } else {
             System.out.println("Sorry! We can't understand what you are trying to do!");
         }
@@ -98,12 +102,12 @@ public class MusicPlayer {
 
     // EFFECTS: displays menu of user-created playlists to user and returns user selected playlist
     private Playlist userSelectPlaylist() {
-        for (int i = 0; i < myMusicPlayer.size(); i++) {
-            String pname = myMusicPlayer.get(i).getPlaylistName();
+        for (int i = 0; i < listOfPlaylists.size(); i++) {
+            String pname = listOfPlaylists.get(i).getPlaylistName();
             System.out.println(i + " " + pname);
         }
         int playlistChoice = Integer.parseInt(input.nextLine());
-        return myMusicPlayer.get(playlistChoice);
+        return listOfPlaylists.get(playlistChoice);
     }
 
 
@@ -114,7 +118,7 @@ public class MusicPlayer {
         System.out.print("Enter playlist name: ");
         String createPlaylistName = input.nextLine();
         Playlist playlist = new Playlist(createPlaylistName);
-        myMusicPlayer.add(playlist); // change this to .addPlaylist
+        listOfPlaylists.add(playlist); // change this to .addPlaylist
         System.out.println("Your playlist, " + createPlaylistName + ", was added to your Music Player!");
     }
 
@@ -187,12 +191,12 @@ public class MusicPlayer {
     }
 
     // EFFECTS: saves the playlists to file
-    private void savePlaylists() {
+    private void saveMusicPlayer() {
         try {
             jsonWriter.open();
-            jsonWriter.write(playlist);
+            jsonWriter.write(musicPlayer);
             jsonWriter.close();
-            System.out.println("Saved " + playlist.getPlaylistName() + " to " + JSON_STORE);
+            System.out.println("Saved your playlists to " + JSON_STORE);
         } catch (FileNotFoundException e) {
             System.out.println("Unable to write to file: " + JSON_STORE);
         }
@@ -200,16 +204,17 @@ public class MusicPlayer {
 
     // MODIFIES: this
     // EFFECTS: loads workroom from file
-    private void loadPlaylists() {
+    private void loadMusicPlayer() {
         try {
-            playlist = jsonReader.read();
-            System.out.println("Loaded " + playlist.getPlaylistName() + " from " + JSON_STORE);
+            musicPlayer = jsonReader.read();
+            System.out.println("Loaded your playlists from " + JSON_STORE);
         } catch (IOException e) {
             System.out.println("Unable to read from file: " + JSON_STORE);
         }
     }
 
 }
+
 
 
 

@@ -4,8 +4,11 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.stream.Stream;
 
+import com.sun.tools.javac.util.List;
+import model.MusicPlayer;
 import model.Playlist;
 import model.Song;
 import org.json.*;
@@ -20,12 +23,12 @@ public class JsonReader {
         this.source = source;
     }
 
-    // EFFECTS: reads playlist from file and returns it;
+    // EFFECTS: reads music player from file and returns it;
     // throws IOException if an error occurs reading data from file
-    public Playlist read() throws IOException {
+    public MusicPlayer read() throws IOException {
         String jsonData = readFile(source);
         JSONObject jsonObject = new JSONObject(jsonData);
-        return parsePlaylist(jsonObject);
+        return parseMusicPlayer(jsonObject);
     }
 
     // EFFECTS: reads source file as string and returns it
@@ -40,25 +43,43 @@ public class JsonReader {
     }
 
     // EFFECTS: parses playlists from JSON object and returns it
-    private Playlist parsePlaylist(JSONObject jsonObject) {
+    private MusicPlayer parseMusicPlayer(JSONObject jsonObject) {
         String name = jsonObject.getString("name");
+        MusicPlayer musicPlayer = new MusicPlayer(name);
+        addPlaylists(musicPlayer, jsonObject);
+        return musicPlayer;
+    }
+
+    // MODIFIES: music player
+    // EFFECTS: parses playlists from JSON object and adds them to music player
+    private void addPlaylists(MusicPlayer musicPlayer, JSONObject jsonObject) {
+        JSONArray jsonArray = jsonObject.getJSONArray("playlists");
+        for (Object json : jsonArray) {
+            JSONObject nextPlaylist = (JSONObject) json;
+            addPlaylist(musicPlayer, nextPlaylist);
+        }
+    }
+
+    // MODIFIES: music player
+    // EFFECTS: parses playlist from JSON object and adds it to music player
+    private void addPlaylist(MusicPlayer musicPlayer, JSONObject jsonObject) {
+        String name = jsonObject.getString("name");
+        ArrayList<Song> listOfSongs = jsonObject.getString();
         Playlist playlist = new Playlist(name);
-        addSongs(playlist, jsonObject);
-        return playlist;
+        musicPlayer.addPlaylist(playlist);
     }
 
     // MODIFIES: playlist
     // EFFECTS: parses songs from JSON object and adds them to playlist
     private void addSongs(Playlist playlist, JSONObject jsonObject) {
-        JSONArray jsonArray = jsonObject.getJSONArray("songs");
-        for (Object json : jsonArray) {
-            JSONObject nextSong = (JSONObject) json;
-            addSong(playlist, nextSong);
-        }
+        String name = jsonObject.getString("name");
+        String artist = jsonObject.getString("artist");
+        Song song = new Song(name, artist);
+        playlist.addSong(song);
     }
 
     // MODIFIES: playlist
-    // EFFECTS: parses songs from JSON object and adds them to playlist
+    // EFFECTS: parses song from JSON object and adds it to playlist
     private void addSong(Playlist playlist, JSONObject jsonObject) {
         String name = jsonObject.getString("name");
         String artist = jsonObject.getString("artist");

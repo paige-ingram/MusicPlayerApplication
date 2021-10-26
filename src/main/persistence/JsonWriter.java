@@ -1,14 +1,17 @@
 package persistence;
 
+import model.MusicPlayer;
 import model.Playlist;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 
 
 import java.io.*;
+import java.util.ArrayList;
 
 // Citation: JsonSerializationDemo - JsonWriter.java
-// Represents a writer that writes JSON representation of playlist to file
+// Represents a writer that writes JSON representation of music player to file
 public class JsonWriter {
     private static final int TAB = 4;
     private PrintWriter writer;
@@ -28,9 +31,9 @@ public class JsonWriter {
     }
 
     // MODIFIES: this
-    // EFFECTS: writes JSON representation of playlist to file
-    public void write(Playlist playlist) {
-        JSONObject json = playlist.toJson();
+    // EFFECTS: writes JSON representation of music player to file
+    public void write(MusicPlayer musicPlayer) {
+        JSONArray json = musicPlayer.getListOfPlaylists().toJson();
         saveToFile(json.toString(TAB));
     }
 

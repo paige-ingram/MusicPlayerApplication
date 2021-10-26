@@ -13,7 +13,6 @@ public class Playlist implements Writable {
     private String playlistName;
     private ArrayList<Song> listOfSongs;
 
-    // REQUIRES: pname has non-zero length
     // MODIFIES: this
     // EFFECTS: constructs an empty playlist with name pname
     public Playlist(String pname) {
@@ -61,7 +60,7 @@ public class Playlist implements Writable {
         return json;
     }
 
-    // EFFECTS: returns things in this workroom as a JSON array
+    // EFFECTS: returns songs in this playlist as a JSON array
     private JSONArray songsToJson() {
         JSONArray jsonArray = new JSONArray();
 

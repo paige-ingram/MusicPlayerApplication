@@ -1,5 +1,6 @@
 package persistence;
 
+import model.MusicPlayer;
 import model.Song;
 import model.Playlist;
 import org.junit.jupiter.api.Test;
@@ -28,18 +29,19 @@ class JsonWriterTest extends JsonTest {
     }
 
     @Test
-    void testWriterEmptyPlaylist() {
+    void testWriterEmptyMusicPlayer() {
         try {
-            Playlist playlist = new Playlist("Dance Yourself Clean from COVID-19");
+            MusicPlayer musicPlayer = new MusicPlayer();
+//            Playlist playlist = new Playlist("Dance Yourself Clean from COVID-19");
             JsonWriter writer = new JsonWriter("./data/testWriterEmptyPlaylist.json");
             writer.open();
-            writer.write(playlist);
+            writer.write(musicPlayer); // should this write a music player?
             writer.close();
 
             JsonReader reader = new JsonReader("./data/testWriterEmptyPlaylist.json");
-            playlist = reader.read();
+            musicPlayer = reader.read();
             assertEquals("Dance Yourself Clean from COVID-19", playlist.getPlaylistName());
-            assertEquals(0, playlist.getListOfSongs().size());
+            assertEquals(0, musicPlayer.getListOfSongs().size());
         } catch (IOException e) {
             fail("Exception should not have been thrown");
         }
@@ -48,12 +50,13 @@ class JsonWriterTest extends JsonTest {
     @Test
     void testWriterRegularPlaylist() {
         try {
+            MusicPlayer musicPlayer = new MusicPlayer();
             Playlist playlist = new Playlist("Dance Yourself Clean from COVID-19");
             playlist.addSong(new Song("Like a G6", "Far East Movement"));
             playlist.addSong(new Song("Motley Crew", "Post Malone"));
             JsonWriter writer = new JsonWriter("./data/testWriterRegularPlaylist.json");
             writer.open();
-            writer.write(playlist);
+            writer.write(musicPlayer);
             writer.close();
 
             JsonReader reader = new JsonReader("./data/testWriterRegularPlaylist.json");
