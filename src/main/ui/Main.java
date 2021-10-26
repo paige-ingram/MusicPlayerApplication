@@ -1,7 +1,9 @@
 package ui;
 
+import java.io.FileNotFoundException;
+
 public class Main {
     public static void main(String[] args) {
-        new MusicPlayer();
+        new MusicPlayer(); // should there be a catch for FileNotFoundException?
     }
 }

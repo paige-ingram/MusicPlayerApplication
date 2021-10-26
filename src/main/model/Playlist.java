@@ -56,8 +56,8 @@ public class Playlist implements Writable {
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
-        json.put("Playlist Name", playlistName);
-        json.put("Songs on Playlist", songsToJson());
+        json.put("playlist name", playlistName);
+        json.put("playlist songs", songsToJson());
         return json;
     }
 

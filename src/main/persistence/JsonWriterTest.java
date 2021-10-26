@@ -28,15 +28,15 @@ class JsonWriterTest extends JsonTest {
     }
 
     @Test
-    void testWriterEmptyWorkroom() {
+    void testWriterEmptyPlaylist() {
         try {
             Playlist playlist = new Playlist("Dance Yourself Clean from COVID-19");
-            JsonWriter writer = new JsonWriter("./data/testWriterEmptyWorkroom.json");
+            JsonWriter writer = new JsonWriter("./data/testWriterEmptyPlaylist.json");
             writer.open();
             writer.write(playlist);
             writer.close();
 
-            JsonReader reader = new JsonReader("./data/testWriterEmptyWorkroom.json");
+            JsonReader reader = new JsonReader("./data/testWriterEmptyPlaylist.json");
             playlist = reader.read();
             assertEquals("Dance Yourself Clean from COVID-19", playlist.getPlaylistName());
             assertEquals(0, playlist.getListOfSongs().size());
@@ -46,17 +46,17 @@ class JsonWriterTest extends JsonTest {
     }
 
     @Test
-    void testWriterGeneralWorkroom() {
+    void testWriterRegularPlaylist() {
         try {
             Playlist playlist = new Playlist("Dance Yourself Clean from COVID-19");
             playlist.addSong(new Song("Like a G6", "Far East Movement"));
             playlist.addSong(new Song("Motley Crew", "Post Malone"));
-            JsonWriter writer = new JsonWriter("./data/testWriterGeneralWorkroom.json");
+            JsonWriter writer = new JsonWriter("./data/testWriterRegularPlaylist.json");
             writer.open();
             writer.write(playlist);
             writer.close();
 
-            JsonReader reader = new JsonReader("./data/testWriterGeneralWorkroom.json");
+            JsonReader reader = new JsonReader("./data/testWriterRegularPlaylist.json");
             playlist = reader.read();
             assertEquals("Dance Yourself Clean from COVID-19", playlist.getPlaylistName());
             List<Song> listOfSongs = playlist.getListOfSongs();

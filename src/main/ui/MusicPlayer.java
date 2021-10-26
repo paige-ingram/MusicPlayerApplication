@@ -2,19 +2,30 @@ package ui;
 
 import model.Playlist;
 import model.Song;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 // a Music Player application with a collection of user-generated playlists
 public class MusicPlayer {
+    private static final String JSON_STORE = "./data/playlist.json";
     private Scanner input;
     private final ArrayList<Playlist> myMusicPlayer;
+    private Playlist playlist;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
     // EFFECTS: runs the music player
     public MusicPlayer() {
         myMusicPlayer = new ArrayList<>();
+        playlist = new Playlist("Paige's Playlist");
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
         runMusicPlayer();
     }
 
@@ -54,6 +65,8 @@ public class MusicPlayer {
         System.out.println("\tadd -> Add Song");
         System.out.println("\tremove -> Remove Song");
         System.out.println("\tview -> View Playlist");
+        System.out.println("\tsave -> save playlists to file");
+        System.out.println("\tload -> load playlists from file");
         System.out.println("\tbye -> End MusicPlayer");
     }
 
@@ -74,6 +87,10 @@ public class MusicPlayer {
             System.out.println("What playlist would you like to view?");
             Playlist selectedPlaylist = userSelectPlaylist();
             userViewPlaylist(selectedPlaylist);
+        } else if (command.equals("save")) {
+            savePlaylists();
+        } else if (command.equals("load")) {
+            loadPlaylists();
         } else {
             System.out.println("Sorry! We can't understand what you are trying to do!");
         }
@@ -167,6 +184,29 @@ public class MusicPlayer {
     // EFFECTS: returns name of given song
     public String getName(Song s) {
         return s.getName();
+    }
+
+    // EFFECTS: saves the playlists to file
+    private void savePlaylists() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(playlist);
+            jsonWriter.close();
+            System.out.println("Saved " + playlist.getPlaylistName() + " to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads workroom from file
+    private void loadPlaylists() {
+        try {
+            playlist = jsonReader.read();
+            System.out.println("Loaded " + playlist.getPlaylistName() + " from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        }
     }
 
 }

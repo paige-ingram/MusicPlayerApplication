@@ -28,7 +28,7 @@ class JsonReaderTest extends JsonTest {
         JsonReader reader = new JsonReader("./data/testReaderEmptyPlaylist.json");
         try {
             Playlist playlist = reader.read();
-            assertEquals("Paige's playlist", playlist.getPlaylistName()); // need to initialise this name
+            assertEquals("Dance Yourself Clean from COVID-19", playlist.getPlaylistName());
             assertEquals(0, playlist.getListOfSongs().size());
         } catch (IOException e) {
             fail("Couldn't read from file");

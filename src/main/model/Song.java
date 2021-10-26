@@ -7,7 +7,6 @@ import persistence.Writable;
 public class Song implements Writable {
     private String name; //Song name
     private String artist; //Artist name
-//    private int length; //Song length
 
     // REQUIRES: song name and artist both have non-zero lengths
     // MODIFIES: this

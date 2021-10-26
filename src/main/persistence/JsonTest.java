@@ -1,7 +1,6 @@
 package persistence;
 
 import model.Song;
-import model.Playlist;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
