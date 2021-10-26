@@ -1,10 +1,14 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 import java.util.List;
 
 // Represents a playlist with pname and a list of songs in order which they are added to playlist
-public class Playlist {
+public class Playlist implements Writable {
 
     private String playlistName;
     private ArrayList<Song> listOfSongs;
@@ -48,26 +52,23 @@ public class Playlist {
             return listOfSongs;
         }
     }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("Playlist Name", playlistName);
+        json.put("Songs on Playlist", songsToJson());
+        return json;
+    }
+
+    // EFFECTS: returns things in this workroom as a JSON array
+    private JSONArray songsToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Song s : listOfSongs) {
+            jsonArray.put(s.toJson());
+        }
+
+        return jsonArray;
+    }
 }
-
-
-//    // EFFECTS: returns song with given name
-//    public Song getSong(String songName) {
-//        for (Song s : listOfSongs) {
-//            if (s.getName().equals(songName)) {
-//                return s;
-//            }
-//            return null;
-//        }
-//        return null;
-//    }
-
-
-//    // MODIFIES: this
-//    // EFFECTS: if song in playlist then removes given song from playlist, else does nothing
-//    public void removeSong(Song mySong) {
-//        if (listOfSongs.contains(mySong)) {
-//            listOfSongs.remove(mySong);
-//        }
-//    }
-
