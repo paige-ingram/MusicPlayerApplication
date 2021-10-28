@@ -1,0 +1,16 @@
+{
+    "playlists": [
+        {
+            "playlist songs": [{
+                "song name": "Song 1",
+                "artist": "Artist 1"
+            }],
+            "playlist name": "Playlist 1"
+        },
+        {
+            "playlist songs": [],
+            "playlist name": "Playlist 2"
+        }
+    ],
+    "music player name": "My music player"
+}

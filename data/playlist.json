@@ -1,0 +1,25 @@
+{
+    "playlists": [
+        {
+            "playlist songs": [
+                {
+                    "song name": "s1",
+                    "artist": "a1"
+                },
+                {
+                    "song name": "this is cool",
+                    "artist": "the kool kids"
+                }
+            ],
+            "playlist name": "p 1"
+        },
+        {
+            "playlist songs": [{
+                "song name": "s2",
+                "artist": "a2"
+            }],
+            "playlist name": "p2"
+        }
+    ],
+    "music player name": "My music player"
+}
