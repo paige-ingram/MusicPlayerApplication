@@ -93,7 +93,7 @@ public class JsonReader {
     // MODIFIES: playlist
     // EFFECTS: parses songs from JSON object and adds them to playlist
     private void addSongs(Playlist playlist, JSONObject jsonObject) {
-        JSONArray jsonArray = jsonObject.getJSONArray("songs");
+        JSONArray jsonArray = jsonObject.getJSONArray("playlist songs");
         for (Object json : jsonArray) {
             JSONObject nextSong = (JSONObject) json;
             addSong(playlist, nextSong);

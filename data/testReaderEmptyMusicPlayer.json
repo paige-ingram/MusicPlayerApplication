@@ -1,14 +1,4 @@
 {
-  "playlists": [
-    {
-    "songs": [
-        {
-          "song name": "",
-          "artist": ""
-        }
-      ]
-     "playlist name": ""
-    }
-  ],
+  "playlists": [],
   "music player name": "My music player"
 }
