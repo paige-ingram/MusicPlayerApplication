@@ -19,7 +19,7 @@ class JsonWriterTest extends JsonTest {
     @Test
     void testWriterInvalidFile() {
         try {
-            Playlist playlist = new Playlist("Dance Yourself Clean from COVID-19");
+            MusicPlayer musicPlayer = new MusicPlayer("My music player");
             JsonWriter writer = new JsonWriter("./data/my\0illegal:fileName.json");
             writer.open();
             fail("IOException was expected");
@@ -31,11 +31,10 @@ class JsonWriterTest extends JsonTest {
     @Test
     void testWriterEmptyMusicPlayer() {
         try {
-            MusicPlayer musicPlayer = new MusicPlayer();
-//            Playlist playlist = new Playlist("Dance Yourself Clean from COVID-19");
+            MusicPlayer musicPlayer = new MusicPlayer("My music player");
             JsonWriter writer = new JsonWriter("./data/testWriterEmptyMusicPlayer.json");
             writer.open();
-            writer.write(musicPlayer); // should this write a music player?
+            writer.write(musicPlayer);
             writer.close();
 
             JsonReader reader = new JsonReader("./data/testWriterEmptyMusicPlayer.json");
@@ -48,25 +47,28 @@ class JsonWriterTest extends JsonTest {
     }
 
     @Test
-    void testWriterRegularPlaylist() {
+    void testWriterRegularMusicPlayer() {
         try {
-            MusicPlayer musicPlayer = new MusicPlayer();
-            Playlist playlist = new Playlist("Dance Yourself Clean from COVID-19");
-            playlist.addSong(new Song("Like a G6", "Far East Movement"));
-            playlist.addSong(new Song("Motley Crew", "Post Malone"));
+            MusicPlayer musicPlayer = new MusicPlayer("My music player");
+            Playlist playlist1 = new Playlist("Playlist 1");
+            Song song1 = new Song("Song 1", "Artist 1");
+            playlist1.addSong(song1);
+            musicPlayer.addPlaylist(playlist1);
+            Playlist playlist2 = new Playlist("Playlist 2");
+            musicPlayer.addPlaylist(playlist2);
+
             JsonWriter writer = new JsonWriter("./data/testWriterRegularMusicPlayer.json");
             writer.open();
             writer.write(musicPlayer);
             writer.close();
 
-            JsonReader reader = new JsonReader("./data/testWriterRegularPlaylist.json");
-            playlist = reader.read();
-            assertEquals("Dance Yourself Clean from COVID-19", playlist.getPlaylistName());
-            List<Song> listOfSongs = playlist.getListOfSongs();
-            assertEquals(2, listOfSongs.size());
-            checkSong("Like a G6", "Far East Movement", listOfSongs.get(0));
-            checkSong("Motley Crew", "Post Malone", listOfSongs.get(1));
-
+            JsonReader reader = new JsonReader("./data/testWriterRegularMusicPlayer.json");
+            musicPlayer = reader.read();
+            assertEquals("My music player", musicPlayer.getMpName());
+            List<Playlist> listOfPlaylists = musicPlayer.getListOfPlaylists();
+            assertEquals(2, listOfPlaylists.size());
+            checkPlaylist("Playlist 1", playlist1.getListOfSongs(), playlist1);
+            checkPlaylist("Playlist 2", playlist2.getListOfSongs(), playlist2);
         } catch (IOException e) {
             fail("Exception should not have been thrown");
         }

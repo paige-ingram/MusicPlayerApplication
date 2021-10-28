@@ -1,5 +1,6 @@
 package persistence;
 
+import model.Song;
 import org.json.JSONArray;
 import org.json.JSONObject;
 

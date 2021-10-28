@@ -23,6 +23,14 @@ public class JsonReader {
         this.source = source;
     }
 
+//    // EFFECTS: reads music player from file and returns it;   // help! Do I read both playlist and musc player?
+//    // throws IOException if an error occurs reading data from file
+//    public Playlist read() throws IOException {
+//        String jsonData = readFile(source);
+//        JSONObject jsonObject = new JSONObject(jsonData);
+//        return parsePlaylist(jsonObject);
+//    }
+
     // EFFECTS: reads music player from file and returns it;
     // throws IOException if an error occurs reading data from file
     public MusicPlayer read() throws IOException {
@@ -30,6 +38,8 @@ public class JsonReader {
         JSONObject jsonObject = new JSONObject(jsonData);
         return parseMusicPlayer(jsonObject);
     }
+
+
 
     // EFFECTS: reads source file as string and returns it
     private String readFile(String source) throws IOException {
@@ -44,10 +54,18 @@ public class JsonReader {
 
     // EFFECTS: parses playlists from JSON object and returns it
     private MusicPlayer parseMusicPlayer(JSONObject jsonObject) {
-        String name = jsonObject.getString("name");
+        String name = jsonObject.getString("music player name");
         MusicPlayer musicPlayer = new MusicPlayer(name);
         addPlaylists(musicPlayer, jsonObject);
         return musicPlayer;
+    }
+
+    // EFFECTS: parses playlists from JSON object and returns it
+    private Playlist parsePlaylist(JSONObject jsonObject) {
+        String name = jsonObject.getString("playlist name");
+        Playlist playlist = new Playlist(name);
+        addSongs(playlist, jsonObject);
+        return playlist;
     }
 
     // MODIFIES: music player
@@ -63,25 +81,29 @@ public class JsonReader {
     // MODIFIES: music player
     // EFFECTS: parses playlist from JSON object and adds it to music player
     private void addPlaylist(MusicPlayer musicPlayer, JSONObject jsonObject) {
-        String name = jsonObject.getString("name");
-        ArrayList<Playlist> listOfPlaylists = jsonObject.getString();
-        Playlist playlist = new Playlist(name);
-        musicPlayer.addPlaylist(playlist);
+        String name = jsonObject.getString("playlist name");
+        // jsonObject.getPlaylistName("playlist name");
+       // ArrayList<Song> listOfSongs = JSONArray.getListOfSongs();  // where can i put this list of songs
+        //ArrayList<Playlist> listOfPlaylists = jsonObject.getString(musicPlayer.getMpName()); // what to put here
+       // Playlist playlist = new Playlist(name);
+        //musicPlayer.addPlaylist(playlist); // does Playlist() need to have another parameter?
+        musicPlayer.addPlaylist(parsePlaylist(jsonObject));
     }
 
     // MODIFIES: playlist
     // EFFECTS: parses songs from JSON object and adds them to playlist
     private void addSongs(Playlist playlist, JSONObject jsonObject) {
-        String name = jsonObject.getString("name");
-        String artist = jsonObject.getString("artist");
-        Song song = new Song(name, artist);
-        playlist.addSong(song);
+        JSONArray jsonArray = jsonObject.getJSONArray("songs");
+        for (Object json : jsonArray) {
+            JSONObject nextSong = (JSONObject) json;
+            addSong(playlist, nextSong);
+        }
     }
 
     // MODIFIES: playlist
     // EFFECTS: parses song from JSON object and adds it to playlist
     private void addSong(Playlist playlist, JSONObject jsonObject) {
-        String name = jsonObject.getString("name");
+        String name = jsonObject.getString("song name");
         String artist = jsonObject.getString("artist");
         Song song = new Song(name, artist);
         playlist.addSong(song);

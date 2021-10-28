@@ -33,7 +33,7 @@ public class JsonWriter {
     // MODIFIES: this
     // EFFECTS: writes JSON representation of music player to file
     public void write(MusicPlayer musicPlayer) {
-        JSONArray json = musicPlayer.getListOfPlaylists().toJson();
+        JSONObject json = musicPlayer.toJson(); // is this an issue because of type JSONArray
         saveToFile(json.toString(TAB));
     }
 

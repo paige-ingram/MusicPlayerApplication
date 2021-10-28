@@ -27,7 +27,7 @@ public class MusicPlayerApp {
     public MusicPlayerApp() throws FileNotFoundException {
         listOfPlaylists = new ArrayList<Playlist>();
 //        playlist = new Playlist("Dance Yourself Clean from COVID-19");
-        musicPlayer = new MusicPlayer();
+        musicPlayer = new MusicPlayer("My music player");
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
         runMusicPlayer();

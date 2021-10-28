@@ -1,5 +1,6 @@
 package persistence;
 
+import model.MusicPlayer;
 import model.Song;
 import model.Playlist;
 import org.junit.jupiter.api.Test;
@@ -16,7 +17,7 @@ class JsonReaderTest extends JsonTest {
     void testReaderNonExistentFile() {
         JsonReader reader = new JsonReader("./data/noSuchFile.json");
         try {
-            Playlist playlist = reader.read();
+            MusicPlayer musicPlayer = reader.read();
             fail("IOException expected");
         } catch (IOException e) {
             // pass
@@ -24,28 +25,28 @@ class JsonReaderTest extends JsonTest {
     }
 
     @Test
-    void testReaderEmptyPlaylist() {
-        JsonReader reader = new JsonReader("./data/testReaderEmptyPlaylist.json");
+    void testReaderEmptyMusicPlayer() {
+        JsonReader reader = new JsonReader("./data/testReaderEmptyMusicPlayer.json");
         try {
-            Playlist playlist = reader.read();
-            assertEquals("Dance Yourself Clean from COVID-19", playlist.getPlaylistName());
-            assertEquals(0, playlist.getListOfSongs().size());
+            MusicPlayer musicPlayer = reader.read();
+            assertEquals("My music player", musicPlayer.getMpName());
+            assertEquals(0, musicPlayer.getListOfPlaylists().size());
         } catch (IOException e) {
             fail("Couldn't read from file");
         }
     }
 
     @Test
-    void testReaderGeneralPlaylist() {
-        JsonReader reader = new JsonReader("./data/testReaderGeneralPlaylist.json");
+    void testReaderGeneralMusicPlayer() {
+        JsonReader reader = new JsonReader("./data/testReaderGeneralMusicPlayer.json");
         try {
-            Playlist playlist = reader.read();
-            assertEquals("Dance Yourself Clean from COVID-19", playlist.getPlaylistName());
-            List<Song> listOfSongs = playlist.getListOfSongs();
-            assertEquals(2, listOfSongs.size());
-            checkSong("Like a G6", "Far East Movement", listOfSongs.get(0));
-            checkSong("Motley Crew", "Post Malone", listOfSongs.get(1));
-            checkSong("Low", "Flo Rida", listOfSongs.get(2));
+            MusicPlayer musicPlayer = reader.read();
+            assertEquals("My music player", musicPlayer.getMpName());
+            List<Playlist> listOfPlaylists = musicPlayer.getListOfPlaylists();
+            assertEquals(3, listOfPlaylists.size());
+            checkPlaylist("Playlist 1", listOfPlaylists.get(0).getListOfSongs(), listOfPlaylists.get(0));
+            checkPlaylist("Playlist 2", listOfPlaylists.get(1).getListOfSongs(), listOfPlaylists.get(1));
+            checkPlaylist("Playlist 3", listOfPlaylists.get(2).getListOfSongs(), listOfPlaylists.get(2));
         } catch (IOException e) {
             fail("Couldn't read from file");
         }
