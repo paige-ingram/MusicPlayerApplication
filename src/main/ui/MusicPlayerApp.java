@@ -16,7 +16,7 @@ import java.util.Scanner;
 public class MusicPlayerApp {
     private static final String JSON_STORE = "./data/playlist.json";
     private Scanner input;
-    private final ArrayList<Playlist> listOfPlaylists;
+   //private final ArrayList<Playlist> listOfPlaylists;
 //    private Playlist playlist;
     private MusicPlayer musicPlayer;
     private JsonWriter jsonWriter;
@@ -25,7 +25,7 @@ public class MusicPlayerApp {
 
     // EFFECTS: runs the music player
     public MusicPlayerApp() throws FileNotFoundException {
-        listOfPlaylists = new ArrayList<Playlist>();
+       // listOfPlaylists = new ArrayList<Playlist>();
 //        playlist = new Playlist("Dance Yourself Clean from COVID-19");
         musicPlayer = new MusicPlayer("My music player");
         jsonWriter = new JsonWriter(JSON_STORE);
@@ -102,12 +102,12 @@ public class MusicPlayerApp {
 
     // EFFECTS: displays menu of user-created playlists to user and returns user selected playlist
     private Playlist userSelectPlaylist() {
-        for (int i = 0; i < listOfPlaylists.size(); i++) {
-            String pname = listOfPlaylists.get(i).getPlaylistName();
+        for (int i = 0; i < musicPlayer.getListOfPlaylists().size(); i++) {
+            String pname = musicPlayer.getListOfPlaylists().get(i).getPlaylistName();
             System.out.println(i + " " + pname);
         }
         int playlistChoice = Integer.parseInt(input.nextLine());
-        return listOfPlaylists.get(playlistChoice);
+        return musicPlayer.getListOfPlaylists().get(playlistChoice);
     }
 
 
@@ -118,7 +118,8 @@ public class MusicPlayerApp {
         System.out.print("Enter playlist name: ");
         String createPlaylistName = input.nextLine();
         Playlist playlist = new Playlist(createPlaylistName);
-        listOfPlaylists.add(playlist); // change this to .addPlaylist
+        //listOfPlaylists.add(playlist); // change this to .addPlaylist
+        musicPlayer.addPlaylist(playlist);
         System.out.println("Your playlist, " + createPlaylistName + ", was added to your Music Player!");
     }
 
