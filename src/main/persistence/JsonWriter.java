@@ -17,7 +17,6 @@ public class JsonWriter {
     private PrintWriter writer;
     private String destination;
 
-
     // EFFECTS: constructs writer to write to destination file
     public JsonWriter(String destination) {
         this.destination = destination;
@@ -48,7 +47,5 @@ public class JsonWriter {
     private void saveToFile(String json) {
         writer.print(json);
     }
-
-
 }
 

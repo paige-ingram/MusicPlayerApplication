@@ -20,14 +20,6 @@ public class JsonReader {
         this.source = source;
     }
 
-//    // EFFECTS: reads music player from file and returns it;   // help! Do I read both playlist and musc player?
-//    // throws IOException if an error occurs reading data from file
-//    public Playlist read() throws IOException {
-//        String jsonData = readFile(source);
-//        JSONObject jsonObject = new JSONObject(jsonData);
-//        return parsePlaylist(jsonObject);
-//    }
-
     // EFFECTS: reads music player from file and returns it;
     // throws IOException if an error occurs reading data from file
     public MusicPlayer read() throws IOException {
@@ -36,8 +28,6 @@ public class JsonReader {
         return parseMusicPlayer(jsonObject);
     }
 
-
-
     // EFFECTS: reads source file as string and returns it
     private String readFile(String source) throws IOException {
         StringBuilder contentBuilder = new StringBuilder();
@@ -45,7 +35,6 @@ public class JsonReader {
         try (Stream<String> stream = Files.lines(Paths.get(source), StandardCharsets.UTF_8)) {
             stream.forEach(s -> contentBuilder.append(s));
         }
-
         return contentBuilder.toString();
     }
 
@@ -79,11 +68,6 @@ public class JsonReader {
     // EFFECTS: parses playlist from JSON object and adds it to music player
     private void addPlaylist(MusicPlayer musicPlayer, JSONObject jsonObject) {
         String name = jsonObject.getString("playlist name");
-        // jsonObject.getPlaylistName("playlist name");
-       // ArrayList<Song> listOfSongs = JSONArray.getListOfSongs();  // where can i put this list of songs
-        //ArrayList<Playlist> listOfPlaylists = jsonObject.getString(musicPlayer.getMpName()); // what to put here
-       // Playlist playlist = new Playlist(name);
-        //musicPlayer.addPlaylist(playlist); // does Playlist() need to have another parameter?
         musicPlayer.addPlaylist(parsePlaylist(jsonObject));
     }
 

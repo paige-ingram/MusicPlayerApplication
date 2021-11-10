@@ -67,8 +67,6 @@ public class Playlist implements Writable {
         for (Song s : listOfSongs) {
             jsonArray.put(s.toJson());
         }
-
         return jsonArray;
     }
-
 }
