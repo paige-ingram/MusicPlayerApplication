@@ -173,7 +173,7 @@ public class MusicPlayerApp {
 
     // EFFECTS: displays playlist to user including playlist name and each song currently in the
     // playlist and its artist, in order which songs were added
-    private void viewPlaylist(Playlist p) {
+    protected void viewPlaylist(Playlist p) {
         String selection = "";  // force entry into loop
         int numSongs = p.getListOfSongs().size();
         System.out.println("Playlist: " + p.getPlaylistName());
@@ -204,7 +204,7 @@ public class MusicPlayerApp {
     }
 
     // MODIFIES: this
-    // EFFECTS: loads workroom from file
+    // EFFECTS: loads music player from file
     private void loadMusicPlayer() {
         try {
             musicPlayer = jsonReader.read();
