@@ -184,6 +184,7 @@ public class GUI extends JFrame {
         if (createPlaylistName != null) {
             Playlist playlist = new Playlist(createPlaylistName);
             mp.addPlaylist(playlist);
+            listModel.addElement(playlist.getPlaylistName());
             JOptionPane.showMessageDialog(successfullyAddedPanel, "Your playlist, " + createPlaylistName
                     + ", was successfully added to your music player.");
         }
@@ -193,6 +194,7 @@ public class GUI extends JFrame {
     public void viewPlaylist(ActionEvent e) {
         JFrame viewPlaylistPosition = new JFrame();
         JFrame showPlaylistPanel = new JFrame();
+        JFrame playlistImage = new JFrame();
 
         String playlistPosAsString = JOptionPane.showInputDialog(viewPlaylistPosition,
                 "Which playlist would you like to view? "
@@ -209,6 +211,9 @@ public class GUI extends JFrame {
                     JOptionPane.showMessageDialog(showPlaylistPanel, "Playlist: "
                             + playlistToView.getPlaylistName() + "\n"
                             + showPlaylist(playlistToView));
+                    showImage();
+//                    ImageIcon icon = new ImageIcon("/data/MusicPlayerImage.png");
+//                    JOptionPane.showMessageDialog(playlistImage, icon);
 //                    List<Song> listOfSongs = playlistToView.getListOfSongs();
 //                    for (int s = 0; s < numSongs; s++) {
 //                        Song song = listOfSongs.get(s);
@@ -388,5 +393,17 @@ public class GUI extends JFrame {
         return songToRemove;
     }
 
-}
+    private void showImage() {
+        JDialog playlistDialog = new JDialog();
+        playlistDialog.setUndecorated(true);
+        JLabel label = new JLabel(new ImageIcon("data/MusicPlayerImage.png"));
+        playlistDialog.add(label);
+        centreOnScreen();
+        playlistDialog.setVisible(true);
 
+        JOptionPane.showMessageDialog(playlistDialog, label,
+                "Yay! What an amazing playlist!",
+                JOptionPane.PLAIN_MESSAGE, null);
+        playlistDialog.setVisible(false);
+    }
+}
