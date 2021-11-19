@@ -178,8 +178,8 @@ public class GUI extends JFrame {
             Song song = listOfSongs.get(s);
             String songName = song.getName();
             String artistName = song.getArtist();
-            JOptionPane.showMessageDialog(showSongsPanel,"Song " + s + ": '" + songName + "' by " + artistName);
-           // return "Song" + s + ": '" + songName + "' by " + artistName;
+            JOptionPane.showMessageDialog(showSongsPanel, "Song " + s + ": '" + songName + "' by " + artistName);
+            // return "Song" + s + ": '" + songName + "' by " + artistName;
         }
         return null;
     }
@@ -282,17 +282,20 @@ public class GUI extends JFrame {
     // EFFECTS: pops up JOptionPane for user to input details which song they would like to remove
     public void viewPlaylistToRemoveSong(Playlist playlist) {
         JFrame selectSongPanel = new JFrame();
+        JFrame successfullyRemovedPanel = new JFrame();
 
         String songPosAsString = JOptionPane.showInputDialog(selectSongPanel,
                 "Which song would you like to remove? "
                         + "Please enter the song's position in the list (0 indexing).");
-
         if (songPosAsString != null) {
             Integer songPosAsInt = Integer.parseInt(songPosAsString);
         }
         try {
-            Integer songPosAsInt = Integer.parseInt(songPosAsString);
+            // Integer songPosAsInt = Integer.parseInt(songPosAsString);
             Song songToRemove = getSong(playlist, songPosAsString);
+            playlist.removeSong(songToRemove);
+            JOptionPane.showMessageDialog(successfullyRemovedPanel, "Your song, '" + songToRemove.getName()
+                    + "', was successfully removed from your playlist, " + playlist.getPlaylistName() + ".");
         } catch (InvalidPositionException exception) {
             JOptionPane.showMessageDialog(selectSongPanel,
                     "That is not a valid position.");
@@ -304,8 +307,8 @@ public class GUI extends JFrame {
     private Song getSong(Playlist playlist, String songPosAsString) throws InvalidPositionException {
         Integer songPosAsInt = Integer.parseInt(songPosAsString);
 
-        Song songToRemove = playlist.getListOfSongs().get(songPosAsInt);
-        return songToRemove;
+        Song song = playlist.getListOfSongs().get(songPosAsInt);
+        return song;
     }
 
     // MODIFIES: this

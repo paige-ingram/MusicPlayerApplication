@@ -1,37 +1,37 @@
 {
     "playlists": [
         {
-            "playlist songs": [
-                {
-                    "song name": "Tomorrow",
-                    "artist": "Annie"
-                },
-                {
-                    "song name": "Song 2",
-                    "artist": "Artist 2"
-                }
-            ],
-            "playlist name": "Pa's Playlist"
-        },
-        {
             "playlist songs": [{
-                "song name": "Black Betty",
-                "artist": "Black Betty"
+                "song name": "1",
+                "artist": "1"
             }],
-            "playlist name": "Ma's Playlist"
+            "playlist name": "Playlist 1"
         },
         {
             "playlist songs": [
                 {
-                    "song name": "Body on My",
-                    "artist": "Pitbull"
+                    "song name": "1",
+                    "artist": "1"
                 },
                 {
-                    "song name": "It's Tricky",
-                    "artist": "Run-DMC"
+                    "song name": "2",
+                    "artist": "2"
                 }
             ],
-            "playlist name": "Mom's Playlist"
+            "playlist name": "Playlist 2"
+        },
+        {
+            "playlist songs": [
+                {
+                    "song name": "2",
+                    "artist": "2"
+                },
+                {
+                    "song name": "3",
+                    "artist": "3"
+                }
+            ],
+            "playlist name": "Playlist 3"
         }
     ],
     "music player name": "My Music Player"
