@@ -157,10 +157,9 @@ public class GUI extends JFrame {
                             "This playlist is empty!");
                 } else {
                     Playlist playlistToView = getPlaylist(playlistPosAsString);
-                    int numSongs = playlistToView.getListOfSongs().size();
                     JOptionPane.showMessageDialog(showPlaylistPanel, "Playlist: "
-                            + playlistToView.getPlaylistName() + "\n"
-                            + showPlaylist(playlistToView));
+                            + playlistToView.getPlaylistName());
+                    showPlaylist(playlistToView);
                     showImage();
                 }
             } catch (InvalidPositionException exception) {
@@ -172,13 +171,15 @@ public class GUI extends JFrame {
 
     // EFFECTS: iterates through list of songs in given playlist and shows each song name and artist
     private String showPlaylist(Playlist playlist) {
+        JFrame showSongsPanel = new JFrame();
         int numSongs = playlist.getListOfSongs().size();
         List<Song> listOfSongs = playlist.getListOfSongs();
         for (int s = 0; s < numSongs; s++) {
             Song song = listOfSongs.get(s);
             String songName = song.getName();
             String artistName = song.getArtist();
-            return "'" + songName + "' by " + artistName;
+            JOptionPane.showMessageDialog(showSongsPanel,"Song " + s + ": '" + songName + "' by " + artistName);
+           // return "Song" + s + ": '" + songName + "' by " + artistName;
         }
         return null;
     }
