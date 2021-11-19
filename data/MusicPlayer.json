@@ -1,0 +1,26 @@
+{
+    "playlists": [
+        {
+            "playlist songs": [{
+                "song name": "Tomorrow",
+                "artist": "Annie"
+            }],
+            "playlist name": "Pa's Playlist"
+        },
+        {
+            "playlist songs": [{
+                "song name": "Black Betty",
+                "artist": "Black Betty"
+            }],
+            "playlist name": "Ma's Playlist"
+        },
+        {
+            "playlist songs": [{
+                "song name": "Body on My",
+                "artist": "Pitbull"
+            }],
+            "playlist name": "Mom's Playlist"
+        }
+    ],
+    "music player name": "My Music Player"
+}
