@@ -315,7 +315,7 @@ public class GUI extends JFrame {
             Song addedSong = new Song(songName, artistName);
             selectedPlaylist.addSong(addedSong);
             JOptionPane.showMessageDialog(successfullyAddedPanel,
-                    "A new song, " + songName + ", was added to your playlist, "
+                    "A new song, '" + songName + "', was added to your playlist, "
                             + selectedPlaylist.getPlaylistName() + "!");
         } else {
             JOptionPane.showMessageDialog(failureToAddPanel, "Sorry, you did not type a valid "
@@ -394,14 +394,17 @@ public class GUI extends JFrame {
     }
 
     private void showImage() {
+
+        JDialog yayDialog = new JDialog();
+        yayDialog.setUndecorated(true);
+        JLabel label = new JLabel(new ImageIcon("data/yay.png"));
+        yayDialog.add(label);
+        centreOnScreen();
+        yayDialog.setVisible(true);
         JDialog playlistDialog = new JDialog();
         playlistDialog.setUndecorated(true);
-        JLabel label = new JLabel(new ImageIcon("data/MusicPlayerImage.png"));
-        playlistDialog.add(label);
-        centreOnScreen();
-        playlistDialog.setVisible(true);
 
-        JOptionPane.showMessageDialog(playlistDialog, label,
+        JOptionPane.showMessageDialog(yayDialog, label,
                 "Yay! What an amazing playlist!",
                 JOptionPane.PLAIN_MESSAGE, null);
         playlistDialog.setVisible(false);
