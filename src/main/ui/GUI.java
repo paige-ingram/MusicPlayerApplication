@@ -1,6 +1,6 @@
 package ui;
 
-import Exceptions.InvalidPositionException;
+import exceptions.InvalidPositionException;
 import model.MusicPlayer;
 import model.Playlist;
 import model.Song;
