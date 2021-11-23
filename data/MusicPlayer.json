@@ -2,36 +2,36 @@
     "playlists": [
         {
             "playlist songs": [{
-                "song name": "1",
-                "artist": "1"
+                "song name": "Superbass",
+                "artist": "Nicki Minaj"
             }],
-            "playlist name": "Playlist 1"
+            "playlist name": "Party Playlist"
         },
         {
             "playlist songs": [
                 {
-                    "song name": "1",
-                    "artist": "1"
+                    "song name": "Positions",
+                    "artist": "Ariana Grande"
                 },
                 {
-                    "song name": "2",
-                    "artist": "2"
+                    "song name": "Firework",
+                    "artist": "Katy Perry"
                 }
             ],
-            "playlist name": "Playlist 2"
+            "playlist name": "Spin Playlist"
         },
         {
             "playlist songs": [
                 {
-                    "song name": "2",
-                    "artist": "2"
+                    "song name": "Ransom",
+                    "artist": "Lil Tecca"
                 },
                 {
-                    "song name": "3",
-                    "artist": "3"
+                    "song name": "Like a G6",
+                    "artist": "Far East Movement"
                 }
             ],
-            "playlist name": "Playlist 3"
+            "playlist name": "Paige's Playlist"
         }
     ],
     "music player name": "My Music Player"
