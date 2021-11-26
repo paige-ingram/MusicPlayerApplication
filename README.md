@@ -66,6 +66,22 @@ New song 'Shannon and Sue' added to a playlist.
 Thu Nov 25 16:03:22 PST 2021
 Removed song 'CLC Study' from a playlist.
 
+###Phase 4: Task 3
+
+The GUI and MusicPlayerApp classes are both doing essentially the same thing except the GUI is displaying 
+the user interface via JFrame windows and the MusicPlayerApp is displaying the user interface via the console.
+As my project is currently configured, it does not make any use of the MusicPlayerApp class and does not allow
+users to interact with the Music Player through the console. However, if I were to allow users to choose between
+displaying the ui in either the console or the JFrame windows, I could:
+- create an abstract class for the ui
+- the abstract class would have associations with the MusicPlayer, JSONWriter, JSONReader, and LogPrinter classes
+- the abstract class would implement methods that are common across both the MusicPlayerApp and GUI classes
+- the MusicPlayerApp class would extend the abstract ui class and implement class-specific method functionality
+- the GUI class would extend the abstract ui class and implement class-specific method functionality
+- I would design a method that allows the user to choose which ui they want to interact with the Music Player
+  (as demonstrated in the AlarmSystem PrintLogAction class in the actionPerformed(ActionEvent evt) method)
+
+
 
 
 

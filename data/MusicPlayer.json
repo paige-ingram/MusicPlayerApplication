@@ -7,8 +7,8 @@
                     "artist": "Nicki Minaj"
                 },
                 {
-                    "song name": "Shannon and Sue",
-                    "artist": "Sue"
+                    "song name": "Starships",
+                    "artist": "Nicki Minaj"
                 }
             ],
             "playlist name": "Party Playlist"
@@ -27,10 +27,16 @@
             "playlist name": "Spin Playlist"
         },
         {
-            "playlist songs": [{
-                "song name": "hi",
-                "artist": "hello"
-            }],
+            "playlist songs": [
+                {
+                    "song name": "Everybody Talks",
+                    "artist": "Neon Trees"
+                },
+                {
+                    "song name": "Let it Be",
+                    "artist": "The Beatles"
+                }
+            ],
             "playlist name": "Paige's Playlist"
         },
         {

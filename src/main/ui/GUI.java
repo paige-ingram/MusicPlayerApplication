@@ -143,7 +143,9 @@ public class GUI extends JFrame implements LogPrinter {
                         JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
                     printLog(EventLog.getInstance());
                     System.exit(0);
-                } // make sure it doesnt close if no is chosen
+                } else {
+                    System.exit(2); // make sure it doesn't close if no is chosen
+                }
             }
         });
     }
@@ -352,22 +354,6 @@ public class GUI extends JFrame implements LogPrinter {
                 JOptionPane.PLAIN_MESSAGE, null);
         playlistDialog.setVisible(false);
     }
-
-//    // code modelled from:
-//    // https://examples.javacodegeeks.com/desktop-java/swing/jframe/create-jframe-window-with-window-close-event/
-//    public class CustomWindowAdapter extends WindowAdapter {
-//        CreateJFrameWindowWithWindowCloseEvent window = null;
-//
-//        CustomWindowAdapter(CreateJFrameWindowWithWindowCloseEvent window) {
-//            this.window = window;
-//        }
-//
-//        // implement windowClosing method
-//        public void windowClosing(WindowEvent e) {
-//            // exit the application when window's close button is clicked
-//            System.exit(0);
-//        }
-//    }
 
 
     @Override
