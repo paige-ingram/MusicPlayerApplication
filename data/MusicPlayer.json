@@ -1,10 +1,16 @@
 {
     "playlists": [
         {
-            "playlist songs": [{
-                "song name": "Superbass",
-                "artist": "Nicki Minaj"
-            }],
+            "playlist songs": [
+                {
+                    "song name": "Superbass",
+                    "artist": "Nicki Minaj"
+                },
+                {
+                    "song name": "Shannon and Sue",
+                    "artist": "Sue"
+                }
+            ],
             "playlist name": "Party Playlist"
         },
         {
@@ -21,17 +27,15 @@
             "playlist name": "Spin Playlist"
         },
         {
-            "playlist songs": [
-                {
-                    "song name": "Ransom",
-                    "artist": "Lil Tecca"
-                },
-                {
-                    "song name": "Like a G6",
-                    "artist": "Far East Movement"
-                }
-            ],
+            "playlist songs": [{
+                "song name": "hi",
+                "artist": "hello"
+            }],
             "playlist name": "Paige's Playlist"
+        },
+        {
+            "playlist songs": [],
+            "playlist name": "Thursday Vibes"
         }
     ],
     "music player name": "My Music Player"

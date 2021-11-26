@@ -18,6 +18,7 @@ public class Playlist implements Writable {
     public Playlist(String pname) {
         this.playlistName = pname;
         listOfSongs = new ArrayList<Song>();
+        EventLog.getInstance().logEvent(new Event("New playlist, " + pname + ", created."));
     }
 
     // EFFECTS: returns list of songs in playlist
@@ -37,6 +38,8 @@ public class Playlist implements Writable {
             return listOfSongs;
         } else {
             listOfSongs.add(mySong);
+            EventLog.getInstance().logEvent(new Event("New song '" + mySong.getName()
+                    + "' added to a playlist."));
             return listOfSongs;
         }
     }
@@ -48,6 +51,8 @@ public class Playlist implements Writable {
             return listOfSongs;
         } else {
             listOfSongs.remove(mySong);
+            EventLog.getInstance().logEvent(new Event("Removed song '" + mySong.getName()
+                    + "' from a playlist."));
             return listOfSongs;
         }
     }

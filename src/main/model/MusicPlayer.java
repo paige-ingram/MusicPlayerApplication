@@ -35,6 +35,8 @@ public class MusicPlayer implements Writable {
     public ArrayList<Playlist> addPlaylist(Playlist myPlaylist) {
         if (!listOfPlaylists.contains(myPlaylist)) {
             listOfPlaylists.add(myPlaylist);
+            EventLog.getInstance().logEvent(new Event("New playlist, " + myPlaylist.getPlaylistName()
+                    + ", added to music player."));
         }
         return listOfPlaylists;
     }

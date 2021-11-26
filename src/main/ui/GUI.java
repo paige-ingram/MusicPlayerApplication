@@ -1,6 +1,8 @@
 package ui;
 
 import exceptions.InvalidPositionException;
+import model.Event;
+import model.EventLog;
 import model.MusicPlayer;
 import model.Playlist;
 import model.Song;
@@ -14,6 +16,7 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.WindowAdapter;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
@@ -23,7 +26,7 @@ import java.util.List;
 // https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
 
 // user interface for the music player application
-public class GUI extends JFrame {
+public class GUI extends JFrame implements LogPrinter {
 
     private static final String JSON_STORE = "./data/MusicPlayer.json";
     private JList list;
@@ -38,6 +41,8 @@ public class GUI extends JFrame {
     private JButton viewPlystBtn;
     private JButton saveMscPlyrBtn;
     private JButton loadMscPlyrBtn;
+
+    private JFrame frame;
 
     // Constructs main window
     // MODIFIES: this
@@ -91,7 +96,9 @@ public class GUI extends JFrame {
     // https://stackoverflow.com/questions/284899/how-do-you-add-an-actionlistener-onto-a-jbutton-in-java
     // MODIFIES: this
     // EFFECTS: initializes buttons
+//    @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
     public void initializeButtons() {
+
         newPlystBtn = new JButton("New Playlist");
         newPlystBtn.addActionListener(this::newPlaylist);
         add(newPlystBtn);
@@ -116,11 +123,29 @@ public class GUI extends JFrame {
         loadMscPlyrBtn.addActionListener(this::loadMusicPlayer);
         add(loadMscPlyrBtn);
 
+        initializeOtherGraphics();
+    }
+
+    public void initializeOtherGraphics() {
         pack();
+        setLocationRelativeTo(null);
         setVisible(true);
         setSize(1250, 1000);
         setLayout(null);
         setVisible(true);
+
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                if (JOptionPane.showConfirmDialog(frame,
+                        "Are you sure you want to close this window?", "Close Window?",
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
+                    printLog(EventLog.getInstance());
+                    System.exit(0);
+                } // make sure it doesnt close if no is chosen
+            }
+        });
     }
 
     // MODIFIES: this
@@ -326,5 +351,30 @@ public class GUI extends JFrame {
                 "Yay! What an amazing playlist!",
                 JOptionPane.PLAIN_MESSAGE, null);
         playlistDialog.setVisible(false);
+    }
+
+//    // code modelled from:
+//    // https://examples.javacodegeeks.com/desktop-java/swing/jframe/create-jframe-window-with-window-close-event/
+//    public class CustomWindowAdapter extends WindowAdapter {
+//        CreateJFrameWindowWithWindowCloseEvent window = null;
+//
+//        CustomWindowAdapter(CreateJFrameWindowWithWindowCloseEvent window) {
+//            this.window = window;
+//        }
+//
+//        // implement windowClosing method
+//        public void windowClosing(WindowEvent e) {
+//            // exit the application when window's close button is clicked
+//            System.exit(0);
+//        }
+//    }
+
+
+    @Override
+    public void printLog(EventLog el) {
+        for (Event next : el) {
+            System.out.println(next.toString() + "\n\n");
+        }
+        repaint();
     }
 }

@@ -45,6 +45,26 @@ it will be easy to keep the crowd entertained without constantly thinking about 
 - As a user, I want to be able to save my playlists to a file.
 - As a user, I want to be able to be able to load my playlists from a file. 
 
+###Phase 4: Task 2
+
+Thu Nov 25 16:02:42 PST 2021
+New playlist, Thursday Vibes, created.
+
+
+Thu Nov 25 16:02:42 PST 2021
+New song 'CLC Study' added to a playlist.
+
+
+Thu Nov 25 16:02:42 PST 2021
+New playlist, Thursday Vibes, added to music player.
+
+
+Thu Nov 25 16:03:13 PST 2021
+New song 'Shannon and Sue' added to a playlist.
+
+
+Thu Nov 25 16:03:22 PST 2021
+Removed song 'CLC Study' from a playlist.
 
 
 
