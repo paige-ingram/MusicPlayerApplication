@@ -69,6 +69,7 @@ public class GUI extends JFrame implements LogPrinter {
         listModel = new DefaultListModel();
         list = new JList(listModel);
         JScrollPane listScrollPane = new JScrollPane(list);
+        listScrollPane.setSize(300, 300);
         add(listScrollPane);
         setVisible(true);
     }
