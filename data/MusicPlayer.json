@@ -1,48 +1,52 @@
 {
-  "playlists": [
-    {
-      "playlist songs": [
+    "playlists": [
         {
-          "song name": "Superbass",
-          "artist": "Nicki Minaj"
+            "playlist songs": [
+                {
+                    "song name": "Superbass",
+                    "artist": "Nicki Minaj"
+                },
+                {
+                    "song name": "Starships",
+                    "artist": "Nicki Minaj"
+                }
+            ],
+            "playlist name": "Party Playlist"
         },
         {
-          "song name": "Starships",
-          "artist": "Nicki Minaj"
-        }
-      ],
-      "playlist name": "Party Playlist"
-    },
-    {
-      "playlist songs": [
-        {
-          "song name": "Positions",
-          "artist": "Ariana Grande"
+            "playlist songs": [
+                {
+                    "song name": "Positions",
+                    "artist": "Ariana Grande"
+                },
+                {
+                    "song name": "Firework",
+                    "artist": "Katy Perry"
+                },
+                {
+                    "song name": "Runaway",
+                    "artist": "Galantis"
+                }
+            ],
+            "playlist name": "Spin Playlist"
         },
         {
-          "song name": "Firework",
-          "artist": "Katy Perry"
-        }
-      ],
-      "playlist name": "Spin Playlist"
-    },
-    {
-      "playlist songs": [
-        {
-          "song name": "Everybody Talks",
-          "artist": "Neon Trees"
+            "playlist songs": [
+                {
+                    "song name": "Everybody Talks",
+                    "artist": "Neon Trees"
+                },
+                {
+                    "song name": "Let it Be",
+                    "artist": "The Beatles"
+                }
+            ],
+            "playlist name": "Paige's Playlist"
         },
         {
-          "song name": "Let it Be",
-          "artist": "The Beatles"
+            "playlist songs": [],
+            "playlist name": "Thursday Vibes"
         }
-      ],
-      "playlist name": "Paige's Playlist"
-    },
-    {
-      "playlist songs": [],
-      "playlist name": "Thursday Vibes"
-    }
-  ],
-  "music player name": "My Music Player"
+    ],
+    "music player name": "My Music Player"
 }
